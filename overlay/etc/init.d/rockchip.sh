@@ -32,7 +32,7 @@ install_mali() {
             MALI=utgard-400
             ;;
         rk3568|rk3566)
-            MALI=bifrost-g52
+            MALI=bifrost-g52-g2p0
             ;;
     esac
 
@@ -62,6 +62,8 @@ elif [[ $COMPATIBLE =~ "px30" ]]; then
     CHIPNAME="px30"
 elif [[ $COMPATIBLE =~ "rk3128" ]]; then
     CHIPNAME="rk3128"
+elif [[ $COMPATIBLE =~ "rk3566" ]]; then
+    CHIPNAME="rk3566"
 elif [[ $COMPATIBLE =~ "rk3568" ]]; then
     CHIPNAME="rk3568"
 else
