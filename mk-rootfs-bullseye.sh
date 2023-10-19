@@ -2,6 +2,7 @@
 
 # Directory contains the target rootfs
 TARGET_ROOTFS_DIR="binary"
+DEFAULT_ROOTFS_FIR="default_rootfs"
 
 case "${ARCH:-$1}" in
 	arm|arm32|armhf)
@@ -70,7 +71,8 @@ elif [ "$ARCH" == "arm64"  ]; then
 	sudo cp /usr/bin/qemu-aarch64-static $TARGET_ROOTFS_DIR/usr/bin/
 fi
 
-sudo cp -f /etc/resolv.conf $TARGET_ROOTFS_DIR/etc/
+sudo cp -f $DEFAULT_ROOTFS_FIR/etc/resolv.conf $TARGET_ROOTFS_DIR/etc/
+sudo cp -rf $DEFAULT_ROOTFS_FIR/usr/lib/modules $TARGET_ROOTFS_DIR/usr/lib/
 
 sudo mount -o bind /dev $TARGET_ROOTFS_DIR/dev
 
@@ -155,17 +157,17 @@ fi
 
 echo -e "\033[36m Install Chinese fonts.................... \033[0m"
 
-# Uncomment zh_CN.UTF-8 for inclusion in generation
-sed -i 's/^# *\(zh_CN.UTF-8\)/\1/' /etc/locale.gen
-echo "LANG=zh_CN.UTF-8" >> /etc/default/locale
+# Uncomment en_US.UTF-8 for inclusion in generation
+sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
+echo "LANG=en_US.UTF-8" >> /etc/default/locale
 
 # Generate locale
 locale-gen
 
 # Export env vars
-echo "export LC_ALL=zh_CN.UTF-8" >> ~/.bashrc
-echo "export LANG=zh_CN.UTF-8" >> ~/.bashrc
-echo "export LANGUAGE=zh_CN.UTF-8" >> ~/.bashrc
+echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
+echo "export LANG=en_US.UTF-8" >> ~/.bashrc
+echo "export LANGUAGE=en_US.UTF-8" >> ~/.bashrc
 
 source ~/.bashrc
 
