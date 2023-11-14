@@ -71,7 +71,10 @@ elif [ "$ARCH" == "arm64"  ]; then
 	sudo cp /usr/bin/qemu-aarch64-static $TARGET_ROOTFS_DIR/usr/bin/
 fi
 
+#customer
 sudo cp -f $DEFAULT_ROOTFS_FIR/etc/resolv.conf $TARGET_ROOTFS_DIR/etc/
+sudo cp -f $DEFAULT_ROOTFS_FIR/etc/apt/sources.list $TARGET_ROOTFS_DIR/etc/apt/sources.list
+sudo rm -rf $TARGET_ROOTFS_DIR/usr/lib/modules
 sudo cp -rf $DEFAULT_ROOTFS_FIR/usr/lib/modules $TARGET_ROOTFS_DIR/usr/lib/
 
 sudo mount -o bind /dev $TARGET_ROOTFS_DIR/dev
