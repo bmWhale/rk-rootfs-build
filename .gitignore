@@ -1,1 +1,4 @@
 default_rootfs/usr/*
+binary/*
+*.tar.gz
+*.img
